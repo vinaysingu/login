@@ -1,5 +1,4 @@
-
-(function () {
+$(document).ready(function () {
   var c = enyo.getCookie("xtsessioncookie"), validate, done;
   done = function () {
     new App().renderInto(document.body);
@@ -19,4 +18,4 @@
   }
   if (!c) done();
   else validate(c);
-}());
+});
