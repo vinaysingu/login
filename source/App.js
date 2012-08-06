@@ -1,10 +1,31 @@
+
 enyo.kind({
-	name: "App",
-	fit: true,
-	components:[
-		{name: "hello", content: "Hello World", allowHtml: true, ontap: "helloWorldTap"}
-	],
-	helloWorldTap: function(inSender, inEvent) {
-		this.$.hello.addContent("<br/><b>hello</b> control was tapped");
-	}
+  name: "App",
+  classes: "xv-login onyx",
+  kind: "XV.ScreenCarousel",
+  fit: true,
+  published: {
+    session: null
+  },
+  carouselEvents: {
+    organizations: "organizationWrapper"
+  },
+  create: function () {
+    this.inherited(arguments);
+    window.app = this;
+  },
+  setCookie: function (response) {
+    enyo.setCookie("xtsessioncookie", JSON.stringify(response), {
+      secure: true,
+      path: "/",
+      // for development -- but should be changed prior to production
+      domain: document.location.hostname === "localhost"? "": "." + document.location.hostname
+    });
+  },
+  components: [
+    {name: "formWrapper", components: [
+      {name: "form", kind: "XV.LoginForm"}]},
+    {name: "organizationWrapper", components: [
+      {name: "organizations", kind: "XV.OrganizationSelection"}]}
+  ]
 });
