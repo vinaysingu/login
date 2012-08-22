@@ -4,6 +4,7 @@ enyo.depends(
   "../../client/lib/backbone/backbone-min.js",
 	"$lib/layout",
 	"$lib/onyx",
+	"../../client/source/core.js",
 	"../../client/source/xt",
 	"../../client/source/xv",
 	"login_form.js",
