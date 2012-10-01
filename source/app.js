@@ -1,31 +1,11 @@
-
 enyo.kind({
   name: "App",
-  classes: "xv-login onyx",
-  kind: "XV.ScreenCarousel",
-  fit: true,
-  published: {
-    session: null
-  },
-  carouselEvents: {
-    organizations: "organizationWrapper"
-  },
-  create: function () {
-    this.inherited(arguments);
-    window.app = this;
-  },
-  setCookie: function (response) {
-    enyo.setCookie("xtsessioncookie", JSON.stringify(response), {
-      secure: true,
-      path: "/",
-      // for development -- but should be changed prior to production
-      domain: document.location.hostname === "localhost"? "": "." + document.location.hostname
-    });
-  },
+  tag: "section",
+  id: "login",
   components: [
-    {name: "formWrapper", components: [
-      {name: "form", kind: "XV.LoginForm"}]},
-    {name: "organizationWrapper", components: [
-      {name: "organizations", kind: "XV.OrganizationSelection"}]}
+    {kind: "Login.Header"},
+    {kind: "Login.Main", name: "main"},
+    {tag: "label", classes: "login-message-box", name: "messageBox"},
+    {kind: "Login.X"}
   ]
 });

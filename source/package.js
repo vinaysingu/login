@@ -2,14 +2,11 @@ enyo.depends(
   "$lib/jquery",
   "../../client/lib/underscore/underscore-min.js",
   "../../client/lib/backbone/backbone-min.js",
-	"$lib/layout",
-	"$lib/onyx",
-	"../../client/source/core.js",
+  "../../client/source/core.js",
 	"../../client/source/xt",
-	"../../client/source/xv",
-	"login_form.js",
-	"organization_selection.js",
-	"app.js",
-	"startup.js",
-	"stylesheets/screen.css"
+  "stylesheets/screen.css",
+  "$lib/layout",
+  "App.js",
+  "Core.js",
+  "views"
 );
