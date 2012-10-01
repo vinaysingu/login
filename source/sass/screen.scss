@@ -4,43 +4,152 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
+@import "compass/css3";
 
-body {
-
+html {
+  @include background-image(linear-gradient(center top, #fff 10%, #b8b8b8));
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.xv-login {
-  .xv-login-form {
+body {
+  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.3em;
+  font-smoothing: antialiased;
+  width: 400px;
+  &.enyo-unselectable.enyo-body-fit {
+    margin: 0 auto;
+    padding: 0;
+    height: auto;
+  }
+}
+
+label {
+  &.login-message-box {
+    @include box-sizing(border-box);
+    display: block;
+    padding: 6px;
+    width: 100%;
+    text-align: center;
     position: absolute;
-    height: 250px;
-    width: 300px;
-    top: 50%;
-    left: 50%;
-    margin-top: -125px;
-    margin-left: -150px;
-    .xv-message-box {
-      font-size: 12px;
-      &.error {
-        color: #ff0000;
-      }
-      text-align: center;
-      padding: 10px;
+    bottom:  -100px;
+    
+    &.error {
+      color: #ff0000;
     }
   }
-  .xv-organizations-selection {
+}
+
+#login {
+  @include border-radius(4px, 4px);
+  position: relative;
+  margin: 130px 0 40px 0;
+  overflow: visible;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2),
+    0 25px 50px 0 rgba(0, 0, 0, 0.15);
+  border: 1px solid #ccc;
+    
+  .login-input {
+    @include border-radius(4px, 4px);
+    display: block;
+    text-transform: lowercase;
+    position: relative;
+    width: 100%;
+    padding: 6px;
+    margin: 2px;
+    border: 1px solid #eee;
+    line-height: 1.4em;
+    font-size: 24px;
+    outline: none;
+    color: rgba(0, 0, 0, 0.3);
+    @include box-sizing(border-box);
+    font-smoothing: antialiased;
+  }
+  
+  button {
+    display: inline-block;
     position: absolute;
-    height: 300px;
-    width: 400px;
-    top: 50%;
-    left: 50%;
-    margin-top: -150px;
-    margin-left: -200px;
-    .xv-organization-row {
-      padding: 5px;
-      cursor: pointer;
+    right: 30px;
+    bottom: -50px;
+    margin: 0;
+    font-weight: bold;
+    padding: 6px;
+    border: 0;
+    background: none;
+    font-size: 18px;
+    vertical-align: baseline;
+    font-family: inherit;
+    color: rgba(0, 0, 0, 0.3);
+    text-transform: lowercase;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+#login h1 {
+  position: absolute;
+  top: -50px;
+  font-size: 50px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  color: rgba(255, 255, 255, 0.3);
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+}
+
+#login input::-webkit-input-placeholder {
+}
+
+#login input:-moz-placeholder {
+  color: #a9a9a9;
+}
+
+#main {
+  @include box-sizing(border-box);
+  padding: 10px;
+  position: relative;
+  overflow: visible;
+  z-index: 2;
+  
+  div {
+    position: relative;
+  }
+  
+  #organizations {
+    position: relative;
+    max-height: 250px;
+    
+    .organization-item {
+      @include box-sizing(border-box);
+      padding: 6px;
+      display: block;
+      position: relative;
+      
       &:hover {
-        background-color: #ddd;
+        background-color: #fff;
       }
-    }
+    } 
   }
+}
+
+#X {
+  position: fixed;
+  top: 50%;
+  right: -300px;
+  height: 600px;
+  margin-top: -300px;
+  text-align: center;
+  font-size: 1000px;
+  line-height: 550px;
+  font-weight: bold;
+  color: #b3b3b3;
+  color: rgba(255, 255, 255, 0.3);
+  text-rendering: optimizeLegibility;
+  text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+  opacity: 0.5;
 }
