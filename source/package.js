@@ -6,7 +6,7 @@ enyo.depends(
 	"../../client/source/xt",
   "stylesheets/screen.css",
   "$lib/layout",
-  "App.js",
+  "app.js",
   "Core.js",
   "views"
 );
