@@ -10,13 +10,13 @@ function main () {
 }
 
 (function () {
-  
+
   var cookieString = "xtsessioncookie", xhrsession, xhrauthentication, xhrselection, hostname;
   xhrsession = new enyo.Ajax({url: "/session", method: "POST"});
   xhrauthentication = new enyo.Ajax({url: "authenticate", method: "POST"});
   xhrselection = new enyo.Ajax({url: "selection", method: "POST"});
   hostname = document.location.hostname;
-  
+
   enyo.kind({
     name: "XT.AuthenticationController",
     kind: "enyo.Object",
@@ -35,14 +35,23 @@ function main () {
       this.setParams(this._cookie);
       return this._cookie;
     },
-    setCookie: function (cookie) {
-      enyo.setCookie(cookieString, JSON.stringify(cookie), {
+    setCookie: function (cookie, options) {
+      var inProps = {
         secure: true,
         path: "/",
-        domain: hostname === "localhost"? "": "." + hostname
-      });
+        domain: hostname === "localhost" ? "" : "." + hostname
+      };
+
+      if (options && options.delete) {
+        inProps["Max-Age"] = 0;
+      }
+
+      enyo.setCookie(cookieString, JSON.stringify(cookie), inProps);
       this._cookie = null;
       this.getCookie();
+    },
+    deleteCookie: function () {
+      this.setCookie({}, { delete: true });
     },
     setParams: function (cookie) {
       if (cookie) {
@@ -58,7 +67,13 @@ function main () {
     },
     init: function () {
       var c = this.getCookie();
-      if (!c) return enyo.asyncMethod(this, this.start);
+      if (c && !this.organization) {
+        // awkward half-logged in state. Delete the cookie to start over.
+        this.deleteCookie();
+        return enyo.asyncMethod(this, this.start);
+      } else if (!c) {
+        return enyo.asyncMethod(this, this.start);
+      }
       this.validate();
     },
     start: function () {
@@ -72,7 +87,7 @@ function main () {
     },
     didValidate: function (n, res) {
       if (res && res.code && res.code === 1) {
-        document.location = "http://" + hostname + "/client";
+        document.location = "https://" + hostname + "/client";
       } else enyo.asyncMethod(this, this.start);
     },
     authenticate: function () {
@@ -104,5 +119,5 @@ function main () {
       document.location = res.loc;
     }
   });
-  
+
 }());
