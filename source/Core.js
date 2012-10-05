@@ -87,7 +87,7 @@ function main () {
     },
     didValidate: function (n, res) {
       if (res && res.code && res.code === 1) {
-        document.location = "https://" + hostname + "/client";
+        document.location = "http://" + hostname + "/client";
       } else enyo.asyncMethod(this, this.start);
     },
     authenticate: function () {
