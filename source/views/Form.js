@@ -16,7 +16,7 @@ enyo.kind({
   ],
   tapped: function (inSender, inEvent) {
     if (inSender === true || inEvent.originator.name === "loginButton") {
-      XT.authController.setId(this.$.id.getValue());
+      XT.authController.setId(this.$.id.getValue().toLowerCase());
       XT.authController.setPassword(this.$.password.getValue());
       XT.authController.authenticate();
     }
