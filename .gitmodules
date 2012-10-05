@@ -7,3 +7,6 @@
 [submodule "lib/layout"]
 	path = lib/layout
 	url = https://github.com/enyojs/layout.git
+[submodule "lib/tools"]
+	path = lib/tools
+	url = git://github.com/xtuple/tools.git

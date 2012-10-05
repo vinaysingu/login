@@ -1,9 +1,7 @@
 enyo.depends(
   "$lib/jquery",
-  "../../client/lib/underscore/underscore-min.js",
-  "../../client/lib/backbone/backbone-min.js",
-  "../../client/source/core.js",
-  "../../client/lib/tools",
+  "$lib/tools",
+  "$lib/backbone/backbone-min.js",
   "stylesheets/screen.css",
   "$lib/layout",
   "app.js",
