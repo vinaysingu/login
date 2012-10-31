@@ -38,8 +38,9 @@ function main () {
     setCookie: function (cookie, options) {
       var inProps = {
         secure: true,
-        path: "/",
-        domain: hostname === "localhost" ? "" : "." + hostname
+        path: "/"
+        // This line makes the cookie break on Chrome when name is IP address
+        // domain: hostname === "localhost" ? "" : "." + hostname
       };
 
       if (options && options.delete) {
@@ -91,10 +92,17 @@ function main () {
       } else enyo.asyncMethod(this, this.start);
     },
     authenticate: function () {
-      var id = this.getId(), pass = this.getPassword();
+      var id = this.getId(), 
+        pass = this.getPassword(),
+        timeStamp = new Date().valueOf();
       XT.app.$.messageBox.addRemoveClass("error", false);
       XT.app.$.messageBox.setContent("");
-      xhrauthentication.go(JSON.stringify({id: id, password: pass}));
+      // Time stamp is for Mobile Safari issue #18707
+      xhrauthentication.go(JSON.stringify({
+        id: id,
+        password: pass,
+        timeStamp: timeStamp
+      }));
       xhrauthentication.response(enyo.bind(this, this.didAuthenticate));
     },
     didAuthenticate: function (n, res) {
