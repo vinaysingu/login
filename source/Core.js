@@ -15,7 +15,7 @@ function main () {
   xhrsession = new enyo.Ajax({url: "/session", method: "POST"});
   xhrauthentication = new enyo.Ajax({url: "authenticate", method: "POST"});
   xhrselection = new enyo.Ajax({url: "selection", method: "POST"});
-  hostname = document.location.hostname;
+  hostname = document.location.hostname, protocol = document.location.protocol;
 
   enyo.kind({
     name: "XT.AuthenticationController",
@@ -43,16 +43,17 @@ function main () {
         // domain: hostname === "localhost" ? "" : "." + hostname
       };
 
+      // NOTE: (cd 11/2) This does not seem to be working in all browsers
       if (options && options.delete) {
-        inProps["Max-Age"] = 0;
+        inProps["max-age"] = 0;
+        inProps["expires"] = "Tue, 2 Feb 1911 00:00:00 UTC"; // good date
       }
-
       enyo.setCookie(cookieString, JSON.stringify(cookie), inProps);
       this._cookie = null;
       this.getCookie();
     },
     deleteCookie: function () {
-      this.setCookie({}, { delete: true });
+      this.setCookie(" ", { delete: true });
     },
     setParams: function (cookie) {
       if (cookie) {
@@ -65,6 +66,7 @@ function main () {
     constructor: function () {
       this.inherited(arguments);
       this.init();
+      window.tmp = this;
     },
     init: function () {
       var c = this.getCookie();
@@ -87,8 +89,8 @@ function main () {
       xhrsession.response(enyo.bind(this, this.didValidate));
     },
     didValidate: function (n, res) {
-      if (res && res.code && res.code === 1) {
-        document.location = "http://" + hostname + "/client";
+      if (res && res.code && res.code === 1 && res.data && res.data.organization) {
+        document.location = protocol + "//" + hostname + "/client";
       } else enyo.asyncMethod(this, this.start);
     },
     authenticate: function () {
@@ -122,7 +124,6 @@ function main () {
     },
     didSelectOrganization: function (n, res) {
       // TODO: need to check for error case
-      //console.log(res);
       this.setCookie(res);
       document.location = res.loc;
     }
