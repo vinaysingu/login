@@ -202,21 +202,22 @@
 
 // Border Radius
 .border-radius(@radius) {
-  -webkit-border-radius: @radius;
-     -moz-border-radius: @radius;
-          border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
 }
 
 // Single Corner Border Radius
 .border-top-left-radius(@radius) {
   -webkit-border-top-left-radius: @radius;
-      -moz-border-radius-topleft: @radius;
-          border-top-left-radius: @radius;
+  -moz-border-radius-topleft: @radius;
+  border-top-left-radius: @radius;
 }
 .border-top-right-radius(@radius) {
   -webkit-border-top-right-radius: @radius;
-      -moz-border-radius-topright: @radius;
-          border-top-right-radius: @radius;
+  -moz-border-radius-topright: @radius;
+  border-top-right-radius: @radius;
 }
 .border-bottom-right-radius(@radius) {
   -webkit-border-bottom-right-radius: @radius;
@@ -248,7 +249,7 @@
 }
 
 // All Corners Border Radius
-.border-radius(@topleft: 0, @topright: 0, @bottomright: 0, @bottomleft: 0) {
+.border-radius-all(@topleft: 0, @topright: 0, @bottomright: 0, @bottomleft: 0) {
   .border-top-left-radius(@topleft);
   .border-bottom-left-radius(@bottomleft);
 	.border-top-right-radius(@topright);
