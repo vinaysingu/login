@@ -1,4 +1,5 @@
 enyo.depends(
+  "preliminaries.js",
   "$lib/jquery",
   "$lib/tools",
   "$lib/backbone/backbone-min.js",
