@@ -5,6 +5,7 @@ enyo.depends(
   "$lib/backbone/backbone-min.js",
   "stylesheets/screen.css",
   "$lib/layout",
+  "en",
   "app.js",
   "Core.js",
   "views"
