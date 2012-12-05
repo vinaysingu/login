@@ -6,6 +6,7 @@ enyo.kind({
     ontap: "itemTapped"
   },
   components: [
+    {name: "idLabel", content: "_chooseDatabase".loc(), classes: "login-label"},
     {kind: "List", name: "list", onSetupItem: "setupOrganization", components: [
       {name: "item", classes: "organization-item"}], countChanged: function () {this.reset()}}
   ],

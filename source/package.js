@@ -4,6 +4,7 @@ enyo.depends(
   "$lib/tools",
   "$lib/backbone/backbone-min.js",
   "stylesheets/screen.css",
+  "$lib/onyx",
   "$lib/layout",
   "en",
   "app.js",
