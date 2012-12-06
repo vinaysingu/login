@@ -4,10 +4,10 @@ var lang = XT.stringsFor("en_US", {
   // Labels
   // ********
 
-  "_login": "Login",
+  "_login": "Sign In",
   "_username": "Username",
   "_password": "Password",
-  "_postbooks": "Postbooks"
+  "_chooseDatabase": "Choose Database"
 
 });
 

@@ -3,6 +3,6 @@ enyo.kind({
   tag: "header",
   id: "header",
   components: [
-    {tag: "h1", content: "_postbooks".loc()}
+    {kind: "Image", src: "assets/logo.png"}
   ]
 });
