@@ -10,12 +10,15 @@ function main () {
 }
 
 (function () {
-
-  var cookieString = "xtsessioncookie", xhrsession, xhrauthentication, xhrselection, hostname;
-  xhrsession = new enyo.Ajax({url: "/session", method: "POST"});
-  xhrauthentication = new enyo.Ajax({url: "authenticate", method: "POST"});
-  xhrselection = new enyo.Ajax({url: "selection", method: "POST"});
-  hostname = document.location.hostname, protocol = document.location.protocol;
+  
+  var cookieString = "xtsessioncookie";
+  var xhrsession = new enyo.Ajax({url: "/session", method: "POST"});
+  var xhrauthentication = new enyo.Ajax({url: "authenticate", method: "POST"});
+  var xhrselection = new enyo.Ajax({url: "selection", method: "POST"});
+  var hostname = document.location.hostname;
+  var protocol = document.location.protocol;
+  var port = document.location.port;
+  
 
   enyo.kind({
     name: "XT.AuthenticationController",
@@ -90,7 +93,7 @@ function main () {
     },
     didValidate: function (n, res) {
       if (res && res.code && res.code === 1 && res.data && res.data.organization) {
-        document.location = protocol + "//" + hostname + "/client";
+        document.location = "%@//%@%@/client".f(protocol, hostname, port? ":%@".f(port): "");
       } else enyo.asyncMethod(this, this.start);
     },
     authenticate: function () {
