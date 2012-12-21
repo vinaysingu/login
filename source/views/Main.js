@@ -3,6 +3,7 @@ enyo.kind({
   tag: "section",
   id: "main",
   kind: "Panels",
+  draggable: false,
   published: {
     didAuthenticate: false
   },
