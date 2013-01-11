@@ -7,12 +7,13 @@ enyo.kind({
   },
   components: [
     {name: "idLabel", content: "_chooseDatabase".loc(), classes: "login-label"},
-    {kind: "List", name: "list", onSetupItem: "setupOrganization", components: [
-      {name: "item", classes: "organization-item"}], countChanged: function () {this.reset()}}
+    {kind: "Repeater", name: "list", onSetupItem: "setupOrganization", components: [
+      {name: "item", classes: "organization-item"}]}
   ],
   setupOrganization: function (inSender, inEvent) {
     var o = XT.authController.getOrganizations();
-    this.$.item.setContent(o[inEvent.index].name);
+    inEvent.item.$.item.setContent(o[inEvent.index].name);
+    return true;
   },
   itemTapped: function (inSender, inEvent) {
     if (inEvent.originator.classes === "organization-item") {
