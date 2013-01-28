@@ -122,7 +122,7 @@ label {
   
   #organizations {
     position: relative;
-    max-height: 200px;
+    min-height: 200px;
     .organization-item {
       @include box-sizing(border-box);
       padding: 8px;
@@ -135,23 +135,6 @@ label {
       &:hover {
         background-color: @white;
       }
-    } 
+    }
   }
-}
-
-#X {
-  position: fixed;
-  top: 50%;
-  right: -300px;
-  height: 600px;
-  margin-top: -300px;
-  text-align: center;
-  font-size: 1000px;
-  line-height: 550px;
-  font-weight: bold;
-  color: @gray;
-  color: rgba(255, 255, 255, 0.3);
-  text-rendering: optimizeLegibility;
-  text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
-  opacity: 0.5;
 }

@@ -5,7 +5,6 @@ enyo.kind({
   components: [
     {kind: "Login.Header"},
     {kind: "Login.Main", name: "main"},
-    {tag: "label", classes: "login-message-box", name: "messageBox"},
-    {kind: "Login.X"}
+    {tag: "label", classes: "login-message-box", name: "messageBox"}
   ]
 });
